@@ -3,15 +3,16 @@ const byte numChars = 32;
 char receivedChars[numChars];
 bool newData=false;
 char temp;
-char morse_dict[26][6]= { ".-",   "-...", "-.-.", "-..",  ".",    "..-.",
+char morse_dict[26+10][6]= { ".-",   "-...", "-.-.", "-..",  ".",    "..-.",
             "--.",  "....", "..",   ".---", "-.-",  ".-..",
             "--",   "-.",   "---",  ".--.", "--.-", ".-.",
             "...",  "-",    "..-",  "...-", ".--",  "-..-",
-            "-.--", "--.." };
+            "-.--", "--..",".----","..---","...--","....--",".....","-....","--...","---..","----.","-----"};
 char* output_str;
-char english_dict[26] = {
+char english_dict[26+10] = {
     'a','b','c','d','e','f','g','h','i','j','k','l','m',
-    'n','o','p','q','r','s','t','u','v','w','x','y','z'
+    'n','o','p','q','r','s','t','u','v','w','x','y','z',
+    '1','2','3','4','5','6','7','8','9','0'
 };
 void setup() {
   pinMode(2,OUTPUT);
@@ -25,7 +26,7 @@ void morse_output(char input_str[]){
     if (c==' '){ digitalWrite(13,HIGH);
     delay(100);}
 
-    for (int j=0;j<26;j++){
+    for (int j=0;j<26+10;j++){
       if(c == english_dict[j]){
         for (int k=0;morse_dict[j][k]!='\0';k++){
           if(morse_dict[j][k]=='.'){
